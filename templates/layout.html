@@ -1,0 +1,25 @@
+<!-- layout template using jinja2 http://jinja.pocoo.org/docs/templates/ for more references  -->
+<html lang = en>
+<!-- head -->
+<head>
+{% block head %}
+<title> {% block title %} {% endblock %} - </title>
+
+<meta charset = "utf-8">
+{% endblock %}
+</head>
+
+<!-- body -->
+<body>
+<!-- content jinja code -->
+	<div id = "content" {% block content %} {% endblock %}> </div>
+
+<!-- footer jinja code -->
+	<div id = "footer"> {% block footer %} Made by Erica Chang 2012 for more info <a href = "http://startupmymind.com"> click here </a>
+{% endblock %}
+	</div>
+</body>
+
+
+</html>
+
