@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %} Sign up {% endblock %}
+
+{% block content %}
+
+<h1> 
+	Register for an Account 
+</h1>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}
+{% endblock %}
+
+<form action = "{{url_for("register")}}" method = "POST">
+name: <input type = "text" name = "name">
+email: <input type = "text" name = "email">
+password: <input type = "password" name = "password">
+confirm password: <input type = "password" name = "password_confirmed">
+<input type = "submit" value = "Create an Account">
+</form>
+
+{% endblock %}

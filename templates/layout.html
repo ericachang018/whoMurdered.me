@@ -3,6 +3,7 @@
 <!-- head -->
 <head>
 {% block head %}
+
 <title> {% block title %} {% endblock %} - </title>
 
 <meta charset = "utf-8">
@@ -12,7 +13,11 @@
 <!-- body -->
 <body>
 <!-- content jinja code -->
-	<div id = "content" {% block content %} {% endblock %}> </div>
+<div id = "content"> {% block content %}  {% endblock %} </div>
+
+<form name = "logout_button" action = "{{url_for("logout")}}" method = "POST">
+<input id="logout_button" type = submit value = "Log out">
+</form>
 
 <!-- footer jinja code -->
 	<div id = "footer"> {% block footer %} Made by Erica Chang 2012 for more info <a href = "http://startupmymind.com"> click here </a>

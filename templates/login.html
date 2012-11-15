@@ -2,15 +2,27 @@
 {% block title %} Sign up!  {% endblock %}
 
 {% block content %}
-<!-- put my contents here... make a form to insert data into games table needs a title and a game discription  -->
+
 <h1> 
-	Sign up here. 
+	login here. 
 </h1>
 
-<form name = 'input' action = "html_form_action.asp" method = "get">
-email: <input type = "text" name = "gametitle">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}
+{% endblock %}
+
+<form action = "{{url_for("authenticate")}}" method = "POST">
+email: <input type = "text" name = "email">
 password: <input type = "password" name = "password">
-<input type = "submit" value = "Submit">
+<input type = "submit" value = "Login">
 </form>
 
 

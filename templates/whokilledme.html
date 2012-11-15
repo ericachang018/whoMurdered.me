@@ -5,12 +5,15 @@
 	<style type="text/css">
 	/*dont know which image I should use for the background but its a dynamic background that will fit the size of the window*/
 	html {
-		background:url('static/Images/shooter.jpg') no-repeat center center fixed;
+		background:url('static/Images/crime scene.jpg') no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
 		background-size:cover;
 	} 
+	body {
+		color:white;
+	}
 
 	</style>
 	<title> Find who killed me...</title>
@@ -18,7 +21,7 @@
 
 
 <body>
-	<h1>test</h1>
+	<h1>test {{session['user_id']}}</h1>
 <!-- The stuff below is a jquery code for a animated / video background I want to use this layed with the smoking gun photo so it looks like you are lying on the ground dying withs now falling on you will figure out how to use this later... https://github.com/sydlawrence/jquery.videoBG/blob/master/demo_bg.html -->
 
 <!-- 	$('body').videoBG({
