@@ -7,7 +7,22 @@
 	Create your own games! 
 </h1>
 
-<p>
-	Test test test... 
-</p>
+<form action = "{{url_for(make_game)}}" method = "POST">
+	Game Title: <input type = "text" name ="game_title"> <br>
+	Game Description: <input type = "textarea" name = "game_description"> <br>
+	Number of Challenges: <input type = "text" name = "number of challenges"> <br>
+	<input type ="submit">
+</form>
+
+<ul>
+{% for game in games %}
+<li>
+	<h2>
+		{{game.id}} | {{game.game_title}} | {{game.game_description}}
+	</h2>	
+</li> 	
+{% endfor %}
+</ul>
+
+
 {% endblock %}
