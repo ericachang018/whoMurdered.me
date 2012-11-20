@@ -1,0 +1,4 @@
+.DS_Store
+.model.py.swp
+env/
+*.pyc
