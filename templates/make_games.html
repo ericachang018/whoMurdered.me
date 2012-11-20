@@ -11,21 +11,15 @@
 </h1>
 
 <form action = "{{url_for("display_make_game")}}" method = "POST">
-	Game Title: <input type = "text" name ="game_title"> <br>
-	Game Description: <input type = "textarea" name = "game_description"> <br>
-	Number of Challenges: <input type = "text" name = "number of challenges"> <br>
+	Game Title: <br>
+	<input class="input-large"type ="text" name ="game_title"> <br>
+	Game Description:<br>
+	<textarea class="input-large" rows = "5" cols = "100%"></textarea> <br>
+	Number of Challenges:<br> 
+	<input class ="input-large" type = "text" name = "number_of_challenges"> <br>
 	<input type ="submit">
 </form>
 
-<ul>
-{% for game in games %}
-<li>
-	<h2>
-		{{game.id}} | {{game.game_title}} | {{game.game_description}}
-	</h2>	
-</li> 	
-{% endfor %}
-</ul>
 
 
 {% endblock %}

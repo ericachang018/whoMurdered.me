@@ -25,12 +25,12 @@
 				<ul class ="nav">
 					<li><a href="{{url_for("select_game")}}"> Games </a></li> 
 					<li><a href="{{url_for("display_make_game")}}"> Make Games </a></li>
-					<li><a href="{{url_for("display_leaderboard")}}"> Leaderboard </a></li>
 					<li><a href="{{url_for("display_status")}}"> Status </a></li>
 					<li><a href="{{url_for("current_game")}}"> Home - Current Game</a></li>
 					<li>
 						<form name = "logout_button" action = "{{url_for("logout")}}" method = "POST"> 
-						<input id = "logout_button" type = submit value ="Log Out">
+						<input id="logout_button" type=submit value="Log Out">
+					</form>
 					</li>
 				</ul>
 			</div>	

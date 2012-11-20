@@ -7,6 +7,13 @@
 
 {% block body %}
 <h1> Your Current Game! </h1>
+<h2> Welcome {place holder for user's name}</h2>
+<p>Your Challenge:</p>
+
+<form action = "{{url_for("check_solution")}}" method = "POST">
+Solution: <input type = "text" name = "challenge_solution"> <br>
+<input type = "submit">
+</form> 
 
 {% endblock %}
 {% endblock %}

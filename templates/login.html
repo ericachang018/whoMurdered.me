@@ -23,7 +23,7 @@
 <form action = "{{url_for("authenticate")}}" method = "POST">
 email: <input type = "text" name = "email">
 password: <input type = "password" name = "password">
-<input type = "submit" value = "Login">
+<input action = "{{url_for("authenticate")}}" method = "POST" type = "submit" value = "Login">
 </form>
 
 

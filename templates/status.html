@@ -8,16 +8,8 @@
 	Your Game Status 
 </h1>
 
+User id - {{session.user_id}} | Game id - {{session.game_id}} | Game level - {{session.game_level}} | Started at - {{session.game_level}} | Completed at - {{session.game_level}}
 
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
 {% block body %}
 {% endblock %}
 <!-- body stuff here -->
