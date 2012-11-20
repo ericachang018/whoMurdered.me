@@ -1,10 +1,18 @@
 {% extends "layout.html" %}
-{%block title %} Select Games!  {% endblock %}
+{%block title %} 
+Select Games!  
+{% endblock %}
 
 <!-- here is the content  -->
 {% block content %}
+<h1>
+	<br>
+	Select A game!
+</h1>
+
 {% for game in game_list %}
+
 <h2>Game {{ games.id }}, title {{ games.game_title }}, description {{games.game_description}}</h2>
-{{% endfor %}}
+{% endfor %}
 
 {% endblock %}

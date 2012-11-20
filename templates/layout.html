@@ -3,26 +3,55 @@
 <!-- head -->
 <head>
 {% block head %}
-
-<title> {% block title %} {% endblock %} - </title>
-
+<link href="/static/CSS/css/bootstrap.min.css" rel="stylesheet" media ="screen">
+<title> {% block title %}  {% endblock %} - </title>
 <meta charset = "utf-8">
 {% endblock %}
 </head>
-
 <!-- body -->
 <body>
-<!-- content jinja code -->
-<div id = "content"> {% block content %}  {% endblock %} </div>
 
-<form name = "logout_button" action = "{{url_for("logout")}}" method = "POST">
-<input id="logout_button" type = submit value = "Log out">
-</form>
+<!-- Navigation Bar  -->
+<div class ="navbar navbar-fixed-top">
+	<div class ="navbar-inner">
+		<div class = "container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		    </a>
+		    <a class ="brand" href="#">Scavange</a>
+		    <div class ="nav-collapse">
+				<ul class ="nav">
+					<li><a href="{{url_for("select_game")}}"> Games </a></li> 
+					<li><a href="{{url_for("display_make_game")}}"> Make Games </a></li>
+					<li><a href="{{url_for("display_leaderboard")}}"> Leaderboard </a></li>
+					<li><a href="{{url_for("display_status")}}"> Status </a></li>
+					<li><a href="{{url_for("current_game")}}"> Home - Current Game</a></li>
+					<li>
+						<form name = "logout_button" action = "{{url_for("logout")}}" method = "POST"> 
+						<input id = "logout_button" type = submit value ="Log Out">
+					</li>
+				</ul>
+			</div>	
+		</div>	
+	</div>
+</div>
+
+<!-- content jinja code -->
+<div id = "content">
+{% block content %} 
+
+{% endblock %} 
+</div>
+
 
 <!-- footer jinja code -->
-	<div id = "footer"> {% block footer %} Made by Erica Chang 2012 for more info <a href = "http://startupmymind.com"> click here </a>
-{% endblock %}
-	</div>
+<div id = "footer"> 
+	{% block footer %} 
+	Made by Erica Chang 2012 for more info <a href = "http://startupmymind.com"> click here </a>
+	{% endblock %}
+</div>
 </body>
 
 

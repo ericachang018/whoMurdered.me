@@ -1,11 +1,16 @@
 {% extends "layout.html" %}
-{% block title %} Sign up {% endblock %}
+{% block title %} 
+	Sign up 
+{% endblock %}
 
 {% block content %}
 
 <h1> 
+	<br>
 	Register for an Account 
 </h1>
+
+<p>Congrats on finding the murder wepon I will need your help to find my murder. Should you choose to accept this challenege I will need to know a little bit about you so we can stay in contact. </p>
 
 {% with messages = get_flashed_messages() %}
   {% if messages %}
@@ -20,10 +25,10 @@
 {% endblock %}
 
 <form action = "{{url_for("register")}}" method = "POST">
-name: <input type = "text" name = "name">
-email: <input type = "text" name = "email">
-password: <input type = "password" name = "password">
-confirm password: <input type = "password" name = "password_confirmed">
+name: <input type = "text" name = "name"> <br>
+email: <input type = "text" name = "email"> <br>
+password: <input type = "password" name = "password"> <br>
+confirm password: <input type = "password" name = "password_confirmed"> <br>
 <input type = "submit" value = "Create an Account">
 </form>
 

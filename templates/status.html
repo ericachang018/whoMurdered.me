@@ -1,12 +1,13 @@
 {% extends "layout.html" %}
-{% block title %} Sign up!  {% endblock %}
+{% block title %} Sign up {% endblock %}
 
 {% block content %}
- 	
-<h1>
-	<br> 
-	login here. 
+
+<h1> 
+	<br>
+	Your Game Status 
 </h1>
+
 
 {% with messages = get_flashed_messages() %}
   {% if messages %}
@@ -19,15 +20,6 @@
 {% endwith %}
 {% block body %}
 {% endblock %}
-
-<form action = "{{url_for("authenticate")}}" method = "POST">
-email: <input type = "text" name = "email">
-password: <input type = "password" name = "password">
-<input type = "submit" value = "Login">
-</form>
-
-
-
-
+<!-- body stuff here -->
 
 {% endblock %}
