@@ -35,7 +35,7 @@ class Session(Base):
 	id = Column(Integer, primary_key = True)
 	user_id = Column(Integer, ForeignKey("users.id"))
 	game_id = Column(Integer, ForeignKey("games.id"))
-	game_level = Column(Integer, nullable = True)
+	game_level = Column(Integer, ForeignKey("challenges.id"))
 	started_at = Column(DateTime, default = now())
 	completed_at  = Column(DateTime, default = now())
 
