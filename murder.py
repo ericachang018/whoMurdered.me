@@ -12,7 +12,6 @@ app.debug = True
 
 app.secret_key = 'super0secret0key'
 
-
 @app.route('/')
 def index():
 	return render_template('whokilledme.html')
@@ -24,7 +23,11 @@ def display_login():
 
 
 @app.route('/login', methods = ['POST'])
+ 
 def authenticate():
+	"""this method checks to see if the user is in the database and creates a session 
+	for the user and directs them to their current game else it will flash an error"""
+
 	email = request.form['email']
 	password = request.form ['password']
 	try:
@@ -38,6 +41,7 @@ def authenticate():
 
 @app.route('/logout', methods = ['POST'])
 def logout():
+	"""this method logs the user out and ends their session. Redirects the user to the log in page"""
 	session.pop("user_id", None)
 	flash('This message has self destructed you are now free to rome across the country')
 	return redirect(url_for("display_login"))
@@ -49,6 +53,8 @@ def display_signup():
 
 @app.route('/signup', methods = ['POST'])
 def register():
+	""" this method writes new unique user information into the users table in the database. then 
+	creates a new session and directs them to the current game."""
 	name = request.form['name']
 	email = request.form['email']
 	password = request.form['password']
@@ -73,34 +79,73 @@ def register():
 	return redirect(url_for('current_game'))
 	
 
-@app.route('/current_game')
+@app.route('/current_game', methods = ['GET'])
 def current_game():
+# TO DO! ERICA 	3
+	"""This method will display the current game. So It needs to look at the session find out 
+	which user is currently logged in and what their current mission / challenge is and display_login
+	the current challenege """
+	return render_template('current_game.html')
+
+@app.route('/current_game', methods = ['POST'])	
+# TO DO ! ERICA  3
+def check_solution():
+	"""this method will check the solution if correct it will up date the session record to 
+	show the user on the new challenge and display the next challengeif the solution is wrong 
+	it will flash an error message."""
 	return render_template('current_game.html')
 
 
 @app.route('/make_games', methods = ['GET'])
+# TO DO ERICA! 1
 def display_make_game():
-	games = db_session.query(Game).all() 
+	"""this method will display the make game form. """
+ 
 	return render_template('make_games.html', games = games)
 
 @app.route('/make_games', methods = ['POST'])
-def create_games():
+# TO DO ERICA 1. 
+def create_games(): 
+	"""this method will write to the game table."""  
 	return redirect(url_for('display_make_game'))
 
-# 	return render_template('make_game.html')
-# # this will redirect to the form to make a game create a html page
+
+@app.route('/make_challenge', methods = ['GET'])
+# TO DO ERICA 1. 
+def display_make_challenge():
+	"""this method will display the make challenge form"""
+	return render_template('make_challenge.html')
+
+@app.route('/make_challenge', methods = ['POST'])
+# TO DO ERICA 2
+def next_challenege():
+	""" if the user CLICKS on +1 CHALLENEGE BUTTON this method will WRITE the challenge to the
+	challenge table in the database and display a new blank form till user presses submit."""
+	return render_template('make_challenge.html')
+	
+
+@app.route('/make_challenge', methods = ['POST'])
+# TO DO ERICA 2
+def finish_game_creation():
+	"""this method will run when user CLICKS SUBMIT BUTTON redirect users to select games page 
+	when they are done creating their game. """
+	pass
 
 @app.route('/select_games', methods = ['GET'])
+# TO DO ERICA 1
 def select_game():
-	return render_template('select_games.html')
+	"""This method will query the database for all the games avaliable to play"""
+	games = db_session.query(Game).all() 
+	return render_template('select_games.html', games = games)
 
-@app.route('/leaderboard', methods = ['GET'])
-def display_leaderboard():
-	return render_template('leaderboard.html')
 
 @app.route('/status', methods = ['GET'])
 def display_status():
-	return render_template('status.html')
+	""" this method will display the all the games the user is currently playing and which 
+	one is active. The user should be able to toggle between the other games to switch their 
+	current active game."""
+	status = db_session.query(Session).all()
+	return render_template('status.html', status = status)
 
 # @app.teardown_request
 # def shutdown_session(exception = None):
