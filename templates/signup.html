@@ -25,11 +25,36 @@
 {% endblock %}
 
 <form action = "{{url_for("register")}}" method = "POST">
-name: <input type = "text" name = "name"> <br>
-email: <input type = "text" name = "email"> <br>
-password: <input type = "password" name = "password"> <br>
-confirm password: <input type = "password" name = "password_confirmed"> <br>
-<input type = "submit" value = "Create an Account">
+name: <input type = "text" name = "name"></input><br>
+email: <input type = "email" name = "email"></input> <br>
+password: <input autofocus type = "password" name = "password"></input> <br>
+confirm password: <input type = "password" name = "password_confirmed"></input> <br>
+<input id="lat" type="hidden" name="latitude"></input><br>
+<input id="long" type="hidden" name="longitude"></input><br> 
+<input type = "submit" value = "Create an Account"></input> <br>
+  <a href="#" onclick="getLocation()"> Get My Location </a>
+
 </form>
 
+<script>
+var userlat=document.getElementById('lat')
+var userlong=document.getElementById('long')
+function getLocation() {
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else { alert('upgrade your browser for this to work.')
+
+    }
+
+}
+function showPosition(position)
+  {
+    console.log(position)
+userlat.value=position.coords.latitude
+userlong.value=position.coords.longitude
+  }
+
+</script>
 {% endblock %}
+

@@ -10,13 +10,21 @@
 	Create your own games! 
 </h1>
 
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
 <form action = "{{url_for("display_make_game")}}" method = "POST">
 	Game Title: <br>
 	<input class="input-large"type ="text" name ="game_title"> <br>
 	Game Description:<br>
-	<textarea class="input-large" rows = "5" cols = "100%"></textarea> <br>
-	Number of Challenges:<br> 
-	<input class ="input-large" type = "text" name = "number_of_challenges"> <br>
+	<textarea class="input-large" rows = "5" cols = "100%" name ="game_description"></textarea> <br>
 	<input type ="submit">
 </form>
 
