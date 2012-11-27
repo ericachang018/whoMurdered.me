@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %} 
+	Make Challenges for your Game!  
+{% endblock %}
+
+{% block content %}
+
+<h1> 
+	<br>
+	Create some Challenges! 
+</h1>
+
+<form action = "{{url_for("next_challenge", game_id=game_id)}}" method = "POST">
+	Story:<br> 
+		<textarea rows="5" cols="100%" name="story"></textarea> <br>
+	puzzle:<br>
+		<textarea rows="5" cols="100%" name="puzzle"></textarea> <br>
+	Solution:<br>
+		<input type = "text" name = "correct_solution"> <br>
+	<!-- Location: <br>
+	<input type = "text" name = "geolocation_tuple?"> <br> -->
+	<input type ="submit">
+</form>
+
+
+{% endblock %}
