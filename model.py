@@ -3,7 +3,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Text
+from sqlalchemy import Column, Float, Integer, String, DateTime, ForeignKey, Text
 import datetime 
 
 engine = create_engine('sqlite:///kill.db', convert_unicode = False)
@@ -21,10 +21,12 @@ class User(Base):
 
 	__tablename__ = "users"
 
-	id = Column(Integer, primary_key = True)
-	email = Column(String(64), nullable = True)
-	password = Column(String(64), nullable = True)
-	name = Column(String(64), nullable = True)
+	id = Column(Integer, primary_key=True)
+	email = Column(String(64), nullable=True)
+	password = Column(String(64), nullable=True)
+	name = Column(String(64), nullable=True)
+	latitude = Column(Float, nullable=True)
+	longitude = Column(Float, nullable=True)
 	verified = Column(String(64), default = 0)
 
 
@@ -32,35 +34,35 @@ class Session(Base):
 
 	__tablename__= "sessions"
 
-	id = Column(Integer, primary_key = True)
+	id = Column(Integer, primary_key=True)
 	user_id = Column(Integer, ForeignKey("users.id"))
 	game_id = Column(Integer, ForeignKey("games.id"))
 	game_level = Column(Integer, ForeignKey("challenges.id"))
-	started_at = Column(DateTime, default = now())
-	completed_at  = Column(DateTime, default = now())
+	started_at = Column(DateTime, default=now())
+	completed_at  = Column(DateTime, default=now())
 
 
 class Game(Base):
 
 	__tablename__ = "games"
 
-	id = Column(Integer, primary_key = True)
-	game_title = Column(String(), nullable = True)
-	game_description = Column(Text(), nullable = True)
+	id = Column(Integer, primary_key=True)
+	game_title = Column(String(), nullable=True)
+	game_description = Column(Text(), nullable=True)
 
 
 class Challenge(Base):
 
 	__tablename__= "challenges"
 
-	id = Column(Integer, primary_key = True)
+	id = Column(Integer, primary_key=True)
 	game_id = Column(Integer, ForeignKey("games.id"))
-	challenge_position = Column(Integer, nullable = True)
-	story = Column(Text(), nullable = True)
-	puzzle = Column (Text(), nullable = True)
-	solution = Column(Text(), nullable = True)
-	latitude = Column(Integer, nullable = True)
-	longitude = Column(Integer, nullable = True)
+	challenge_position = Column(Integer, nullable=True)
+	story = Column(Text(), nullable=True)
+	puzzle = Column (Text(), nullable=True)
+	solution = Column(Text(), nullable=True)
+	latitude = Column(Float, nullable=True)
+	longitude = Column(Float, nullable=True)
 
 	
 def init_db():
