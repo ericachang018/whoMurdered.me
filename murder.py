@@ -101,11 +101,10 @@ def check_solution():
 
 
 @app.route('/make_games', methods=['GET'])
-# TO DO ERICA 1
 def display_make_game():
-  """this method will display the make game form. """
- 
+  """This method will display the make game form. """
   return render_template('make_games.html')
+
 
 @app.route('/make_games', methods=['POST']) 
 def create_games(): 
@@ -125,7 +124,6 @@ def create_games():
   return redirect(url_for('display_make_challenge', game_id=game_id))
 
 @app.route('/make_challenge/<int:game_id>', methods=['GET'])
-# TO DO ERICA 1 DE BUG THIS! MAKE IT RENDER THE TEMPLATE! 
 def display_make_challenge(game_id):
   """this method will display the make challenge form"""
   return render_template('make_challenge.html', game_id=game_id)
@@ -138,23 +136,27 @@ def next_challenge(game_id):
   story = request.form.get('story')
   puzzle = request.form['puzzle']
   solution = request.form['correct_solution']
-  # location = request.form['geolocation_tuple?'] I will have to split the tuple or have 2 
-  # forms one for longitude and latitude 
-
+  # challenge_position = request.form['challenge_position'] add in a hidden form input that will auto count how many challenges are made
   if story is None or puzzle is None or solution is None: 
     flash ('Please fill out everything on the page as this is all critical information your players will need in order to play your game.')
     return redirect(url_for('display_make_challenge'))
   else:
     new_challenge = Challenge(game_id=game_id, story=story, puzzle=puzzle, solution=solution)
-  return render_template('make_challenge/<int:game_id>.html')
+    # how do I add a counter?
+    db_session.add(new_challenge)
+    db_session.commit()
+    db_session.refresh(new_challenge)
+  return render_template('next_challenge/<int:game_id>.html')
   
 
 @app.route('/make_challenge', methods=['POST'])
-# TO DO ERICA 2
+# TO DO ERICA 3 
 def finish_game_creation():
   """this method will run when user CLICKS SUBMIT BUTTON redirect users to select games page 
   when they are done creating their game. """
-  pass
+
+  return render_template(url_for('current_game'))
+  
 
 @app.route('/select_games', methods=['GET'])
 # TO DO ERICA 3 - FIGURE OUT HOW TO MAKE MY ROW DATA CLICKABLE AND MAKE THE GAME LINK ACTIVE 

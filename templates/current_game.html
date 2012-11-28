@@ -40,6 +40,7 @@ function initialize() {
 
   google.maps.event.addListener(map, 'click', function(event) {
     placeMarker(event.latLng);
+    // remove listener pass in the click so that after the first click it will not allow users to click anymore
   });
 }
 
