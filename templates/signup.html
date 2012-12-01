@@ -25,14 +25,14 @@
 {% endblock %}
 
 <form action = "{{url_for("register")}}" method = "POST">
-name: <input type = "text" name = "name"></input><br>
-email: <input type = "email" name = "email"></input> <br>
-password: <input autofocus type = "password" name = "password"></input> <br>
-confirm password: <input type = "password" name = "password_confirmed"></input> <br>
-<input id="lat" type="hidden" name="latitude"></input><br>
-<input id="long" type="hidden" name="longitude"></input><br> 
-<input type = "submit" value = "Create an Account"></input> <br>
-  <a href="#" onclick="getLocation()"> Get My Location </a>
+  <!-- we used flask wtf to create our forms below.  -->
+  {{ form.hidden_tag() }}
+  {{ render_field(form.name) }}
+  {{ render_field(form.email) }}
+  {{ render_field(form.password) }}
+  {{ render_field(form.password_confirm) }}
+  <input type = "submit" value = "Create an Account"></input> <br>
+  <a href="#" onclick="getLocation(); return false;"> Get My Location </a>
 
 </form>
 
@@ -46,7 +46,7 @@ function getLocation() {
     else { alert('upgrade your browser for this to work.')
 
     }
-
+  return false;
 }
 function showPosition(position)
   {

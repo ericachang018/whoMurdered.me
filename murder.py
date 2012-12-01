@@ -3,9 +3,13 @@ import model
 from model import db_session, User, Game, Challenge, Session
 from flask.ext.login import LoginManager
 
+import forms
+
 
 app = Flask(__name__) 
 app.debug = True
+CSRF_ENABLED=False
+app.config.from_object(__name__)
 
 # login_manager = LoginManager()
 # login_manager.setup_app(app)
@@ -48,25 +52,28 @@ def logout():
 
 
 @app.route('/signup', methods=['GET'])
-def display_signup(): 
-  return render_template('signup.html')
+def display_signup():
+  form = forms.RegForm()
+  return render_template('signup.html', form=form)
 
 @app.route('/signup', methods=['POST'])
 def register():
   """ this method writes new unique user information into the users table in the database. then 
   creates a new session and directs them to the current game."""
   print request.form
-  name = request.form['name']
-  email = request.form['email']
-  password = request.form['password']
-  confirm_password = request.form['password_confirmed']
-  latitude = request.form.get('latitude')
-  longitude = request.form.get('longitude')
-
-  if password != confirm_password:
-    flash ('Passwords did not match please try again')
-    return redirect(url_for('display_signup'))
-
+  form = forms.RegForm()
+# if not form. is where the magic happends in flask-wtforms 
+  if not form.validate_on_submit():
+    print form.errors
+    return render_template("signup.html", form=form)
+ 
+  name = form.name.data
+  email = form.email.data
+  password = form.password.data
+  latitude = float(form.lat.data)
+  longitude = float(form.long.data)
+  print latitude, longitude 
+# from here to the comment above this is flask-wtf library. http://flask.pocoo.org/docs/patterns/wtforms/ to read more about this
   existing = db_session.query(User).filter_by(email=email).first()
   print existing 
   if existing: 
