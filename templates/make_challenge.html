@@ -23,4 +23,41 @@
 </form>
 
 
+<!-- google maps api drop marker  -->
+<div id="map_canvas" style="width:51%; height:50%"></div>
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2XjJS6KlokrWieEJIi-qpUBZqoFYujhA&sensor=true">
+</script>
+<script type="text/javascript">
+  var map;
+function initialize() {
+  var myLatlng = new google.maps.LatLng(37.7750,-122.4183);
+  var mapOptions = {
+    zoom: 12,
+    center: myLatlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+  google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(event.latLng);
+    // remove listener pass in the click so that after the first click it will not allow users to click anymore
+  });
+}
+
+function placeMarker(location) {
+  var marker = new google.maps.Marker({
+      position: location,
+      map: map
+  });
+
+  map.setCenter(location);
+}
+</script>
+
+<script type="text/javascript">
+	initialize()
+</script> 
+
+
 {% endblock %}

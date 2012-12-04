@@ -15,10 +15,30 @@
 
 <form action = "{{url_for("check_solution")}}" method = "POST">
 	Solution: <input type = "text" name = "challenge_solution"> <br>
-	<input type = "submit">
+	<input type = "submit"> <br>
+  <a href="#" onclick="getLocation(); return false;"> Get My Location </a>
 </form> 
 
+<script>
+var userlat=document.getElementById('lat')
+var userlong=document.getElementById('long')
+function getLocation() {
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else { alert('upgrade your browser for this to work.')
 
+    }
+  return false;
+}
+function showPosition(position)
+  {
+    console.log(position)
+userlat.value=position.coords.latitude
+userlong.value=position.coords.longitude
+  }
+
+</script>
 
 
 <!--this is google maps Javascript-->

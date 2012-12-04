@@ -47,7 +47,7 @@ def authenticate():
 def logout():
   """this method logs the user out and ends their session. Redirects the user to the log in page"""
   session.pop("user_id", None)
-  flash('This message has self destructed you are now free to rome across the country')
+  flash('This message has self destructed you are now free to roam across the country')
   return redirect(url_for("display_login"))
 
 
@@ -72,7 +72,6 @@ def register():
   password = form.password.data
   latitude = float(form.lat.data)
   longitude = float(form.long.data)
-  print latitude, longitude 
 # from here to the comment above this is flask-wtf library. http://flask.pocoo.org/docs/patterns/wtforms/ to read more about this
   existing = db_session.query(User).filter_by(email=email).first()
   print existing 
@@ -84,7 +83,6 @@ def register():
     db_session.add(new_user)
     db_session.commit()
     db_session.refresh(new_user)
-    print new_user
     user = db_session.query(User).filter_by(email=email, password=password).one()
     session['user_id'] = user.id
   return redirect(url_for('current_game'))
@@ -153,7 +151,7 @@ def next_challenge(game_id):
     db_session.add(new_challenge)
     db_session.commit()
     db_session.refresh(new_challenge)
-  return render_template('next_challenge/<int:game_id>.html')
+  return redirect(url_for('next_challenge', game_id=game_id))
   
 
 @app.route('/make_challenge', methods=['POST'])
