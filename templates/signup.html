@@ -12,7 +12,7 @@
 
 <p>Congrats on finding the murder weapon I will need your help to find my murder. <br> Should you choose to accept this challenege I will need to know a little bit about <br> you so we can stay in contact. </p>
 
-{% with messages = get_flashed_messages() %}
+<!-- {% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class=flashes>
     {% for message in messages %}
@@ -22,18 +22,42 @@
   {% endif %}
 {% endwith %}
 {% block body %}
-{% endblock %}
+{% endblock %} -->
 
-<form action = "{{url_for("register")}}" method = "POST">
+<form action="{{url_for("register")}}" method="POST">
   <!-- we used flask wtf to create our forms below.  -->
   {{ form.hidden_tag() }}
   {{ render_field(form.name) }}
   {{ render_field(form.email) }}
   {{ render_field(form.password) }}
   {{ render_field(form.password_confirm) }}
-  <input type = "submit" value = "Create an Account"></input> <br>
-
+<div class="btn">
+  <a href="#" onclick="getLocation(); return false;"> Get My Location </a> 
+</div>
+<br>
+<br>
+  <input type="submit" class="btn" value="Create an Account"></input> <br>
 </form>
+
+<script>
+var userlat=document.getElementById('lat')
+var userlong=document.getElementById('long')
+function getLocation() {
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else { alert('upgrade your browser for this to work.')
+
+    }
+  return false;
+}
+function showPosition(position)
+  {
+    console.log(position)
+userlat.value=position.coords.latitude
+userlong.value=position.coords.longitude
+  }
+</script>
 
 
 {% endblock %}

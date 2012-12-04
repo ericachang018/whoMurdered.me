@@ -16,18 +16,18 @@ app.config.from_object(__name__)
 
 app.secret_key = 'super0secret0key'
 
-@app.route('/')
+@app.route('/', methods=["GET"])
 def index():
   return render_template('whokilledme.html')
+@app.route('/', methods=["POST"])
+def redirect_login():
+  return url_for(display_login)
 
 
 @app.route("/login", methods=["GET"])
 def display_login():
   return render_template('login.html')
-
-
 @app.route('/login', methods=['POST'])
- 
 def authenticate():
   """this method checks to see if the user is in the database and creates a session 
   for the user and directs them to their current game else it will flash an error"""
@@ -55,7 +55,6 @@ def logout():
 def display_signup():
   form = forms.RegForm()
   return render_template('signup.html', form=form)
-
 @app.route('/signup', methods=['POST'])
 def register():
   """ this method writes new unique user information into the users table in the database. then 
@@ -94,6 +93,10 @@ def current_game():
   """This method will display the current game. So It needs to look at the session find out 
   which user is currently logged in and what their current mission / challenge is and display_login
   the current challenege """
+  
+  # name=db_session.query(User).filter_by(name) 
+  # HOW DO I DISPLAY A NAME FROM THE DATABASE? AND HOW CAN I DISPLAY MY CHALLENEGE?
+
   return render_template('current_game.html')
 
 @app.route('/current_game', methods=['POST']) 

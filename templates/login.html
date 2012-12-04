@@ -2,11 +2,12 @@
 {% block title %} Sign up!  {% endblock %}
 
 {% block content %}
- 	
+<div class="page-header"> 	
 <h1>
 	<br> 
 	login here. 
 </h1>
+</div>
 
 {% with messages = get_flashed_messages() %}
   {% if messages %}
@@ -25,6 +26,10 @@ email: <input type = "text" name = "email">
 password: <input type = "password" name = "password">
 <input action = "{{url_for("authenticate")}}" method = "POST" type = "submit" value = "Login">
 </form>
+
+
+
+
 
 
 

@@ -10,5 +10,5 @@ class RegForm(Form):
 								 validators=[Required(),
 								 	         Length(min=4),
 										     EqualTo("password")])
-	lat = HiddenField("My Latitude", validators=[Length(min=0)])
-	long = HiddenField("My Longitude", validators=[Length(min=0)])
+	lat = HiddenField("My Latitude", validators=[Required()])
+	long = HiddenField("My Longitude", validators=[Required()])
