@@ -5,7 +5,7 @@
 
 <head>
 {% block head %}
-<link href="/static/CSS/css/bootstrap.min.css" rel="stylesheet" media ="screen">
+<link href="/static/CSS/css/bootstrap.superhero.min.css" rel="stylesheet" media ="screen">
 <title> {% block title %}  {% endblock %} - </title>
 <meta charset = "utf-8">
 {% endblock %}
@@ -30,8 +30,8 @@
 					<li><a href="{{url_for("display_status")}}"> Status </a></li>
 					<li><a href="{{url_for("current_game")}}"> Home - Current Game</a></li>
 					<li>
-						<form name = "logout_button" action = "{{url_for("logout")}}" method = "POST"> 
-						<input id="logout_button" type=submit value="Log Out">
+						<form name="logout_button" action="{{url_for("logout")}}" method="POST"> 
+						<input class="btn" type=submit value="Log Out">
 					</form>
 					</li>
 				</ul>
@@ -49,11 +49,12 @@
 
 
 <!-- footer jinja code -->
-<div id = "footer"> 
+<!-- <div id = "footer">  -->
+<!-- <div class="footer">
 	{% block footer %} 
 	Made by Erica Chang 2012 for more info <a href = "http://startupmymind.com"> click here </a>
 	{% endblock %}
-</div>
+</div> -->
 </body>
 
 
