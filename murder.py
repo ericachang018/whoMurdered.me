@@ -19,6 +19,7 @@ app.secret_key = 'super0secret0key'
 @app.route('/', methods=["GET"])
 def index():
   return render_template('whokilledme.html')
+  
 @app.route('/', methods=["POST"])
 def redirect_login():
   return url_for(display_login)
@@ -27,6 +28,7 @@ def redirect_login():
 @app.route("/login", methods=["GET"])
 def display_login():
   return render_template('login.html')
+
 @app.route('/login', methods=['POST'])
 def authenticate():
   """this method checks to see if the user is in the database and creates a session 
@@ -55,11 +57,11 @@ def logout():
 def display_signup():
   form = forms.RegForm()
   return render_template('signup.html', form=form)
+
 @app.route('/signup', methods=['POST'])
 def register():
   """ this method writes new unique user information into the users table in the database. then 
   creates a new session and directs them to the current game."""
-  print request.form
   form = forms.RegForm()
 # if not form. is where the magic happends in flask-wtforms 
   if not form.validate_on_submit():

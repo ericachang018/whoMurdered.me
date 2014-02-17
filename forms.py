@@ -1,7 +1,8 @@
-from flask.ext.wtf import Form, TextField, Email, Required, \
-						  Length, EqualTo, FloatField, PasswordField, \
-						  HiddenField, NumberRange
-
+# from flask.ext.wtf import Form
+# from wtforms import TextFeild, BooleanFeild, Length, FloatFeild, HiddenFeild
+# from wtforms.validators import Required, Email, PasswordFeild, NumberRange, EqualTo
+from wtforms import Form, BooleanField, TextField, PasswordField, HiddenField, FloatField
+from wtforms.validators import Length, Required, EqualTo, Email
 class RegForm(Form):
 	name = TextField("Enter Your Name", validators=[Required()])
 	email = TextField("Email", validators=[Required(), Email()])
